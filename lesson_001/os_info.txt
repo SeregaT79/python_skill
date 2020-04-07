@@ -1,0 +1,4 @@
+OS info - uname_result(system='Linux', node='zerg-Not-Specified', release='5.3.0-46-generic', version='#38-Ubuntu SMP Fri Mar 27 17:37:05 UTC 2020', machine='x86_64', processor='x86_64')
+Python version - 3.7.5 (default, Nov 20 2019, 09:21:52) 
+[GCC 9.2.1 20191008]
+('64bit', 'ELF')
