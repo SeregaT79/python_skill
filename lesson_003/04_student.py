@@ -10,5 +10,12 @@
 #   Студенту надо попросить ХХХ.ХХ рублей
 
 educational_grant, expenses = 10000, 12000
+rashod = [expenses-educational_grant]
+n=10
 
-# TODO здесь ваш код
+while n > 0:
+    expenses += (expenses*3)/100
+    rashod.append(expenses-educational_grant)
+    n-=1
+
+print(f"Студенту надо попросить {round(sum(rashod), 3)} рублей")
