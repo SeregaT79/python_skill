@@ -27,46 +27,11 @@ sd.resolution = (800, 600)
 # sd.get_vector()
 # sd.line()
 # Результат решения см lesson_004/results/exercise_01_shapes.jpg
-#
-# def treangle(point=0, angle=0, a=50):
-#     while angle < 360:
-#         figure = sd.get_vector(start_point=point, angle=angle, length=a)
-#         figure.draw()
-#         angle += 120
-#         point = figure.end_point
-#
-#
-# def kwadrat(point=0, angle=0, a=50):
-#     while angle < 360:
-#         figure = sd.get_vector(start_point=point, angle=angle, length=a)
-#         figure.draw()
-#         angle += 90
-#         point = figure.end_point
-#
-# def pyatiangle(point=0, angle=0, a=50):
-#     while angle < 360:
-#         figure = sd.get_vector(start_point=point, angle=angle, length=a)
-#         figure.draw()
-#         angle += 72
-#         point = figure.end_point
-#
-#
-# def shestiangle(point=0, angle=0, a=50):
-#     while angle < 360:
-#         figure = sd.get_vector(start_point=point, angle=angle, length=a)
-#         figure.draw()
-#         angle += 60
-#         point = figure.end_point
 
-# point_t = sd.get_point(50, 50)
-# point_k = sd.get_point(400, 50)
+point_t = sd.get_point(50, 50)
+point_k = sd.get_point(400, 50)
 point_p = sd.get_point(400, 400)
-# point_s = sd.get_point(50, 400)
-#
-# kwadrat(point=point_k, a=100)
-# treangle(point=point_t, a=150)
-# pyatiangle(point=point_p, a=100)
-# shestiangle(point=point_s, a=100)
+point_s = sd.get_point(50, 400)
 
 # Часть 1-бис.
 # Попробуйте прикинуть обьем работы, если нужно будет внести изменения в этот код.
