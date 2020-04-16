@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import simple_draw as sd
 
-background_color = (255, 255, 255)
+sd.background_color = (255, 255, 255)
 # Добавить цвет в функции рисования геом. фигур. из упр lesson_004/01_shapes.py
 # (код функций скопировать сюда и изменить)
 # Запросить у пользователя цвет фигуры посредством выбора из существующих:
@@ -20,38 +20,38 @@ point_p = sd.get_point(400, 400)
 point_s = sd.get_point(50, 400)
 p_fig = [point_t, point_k, point_p, point_s]
 
-def figure_draw(point=0, delta=0, angle=0, a=50, color=None):
+def figure_draw(point=0, delta=0, angle=0, a=50, color=0):
     while angle < 360:
-        figure = sd.get_vector(start_point=point, angle=angle, length=a)
+        figure = sd.get_vector(start_point=point, angle=angle, length=a, width=2)
         figure.draw(color=color)
         angle += delta
         point = figure.end_point
 
 colors = {
-    1: sd.COLOR_RED,
-    2: sd.COLOR_ORANGE,
-    3: sd.COLOR_YELLOW,
-    4: sd.COLOR_GREEN,
-    5: sd.COLOR_CYAN,
-    6: sd.COLOR_BLUE,
-    7: sd.COLOR_PURPLE,
-    8: sd.COLOR_DARK_YELLOW,
-    9: sd.COLOR_DARK_ORANGE,
-    10: sd.COLOR_DARK_RED,
-    11: sd.COLOR_DARK_GREEN,
-    12: sd.COLOR_DARK_CYAN,
-    13: sd.COLOR_DARK_BLUE,
-    14: sd.COLOR_DARK_PURPLE,
+    0: [sd.COLOR_RED,'red'],
+    1: [sd.COLOR_ORANGE, 'orange'],
+    2: [sd.COLOR_YELLOW, 'yellow'],
+    3: [sd.COLOR_GREEN, 'green'],
+    4: [sd.COLOR_CYAN, 'cyan'],
+    5: [sd.COLOR_BLUE, 'blue'],
+    6: [sd.COLOR_PURPLE,'purple'],
+    7: [sd.COLOR_DARK_YELLOW, 'dark_yellow'],
+    8: [sd.COLOR_DARK_ORANGE, 'dark_orange'],
+    9: [sd.COLOR_DARK_RED, 'dark_red'],
+    10: [sd.COLOR_DARK_GREEN, 'dark_green'],
+    11: [sd.COLOR_DARK_CYAN, 'dark_cyan'],
+    12: [sd.COLOR_DARK_BLUE, 'dark_blue'],
+    13: [sd.COLOR_DARK_PURPLE, 'dark_purple']
 }
 for num, col in colors.items():
-    print(num, "-",  col)
+    print(num, "-",  col[1])
 
 
 color_input = int(input("Введите номер желаемого цвета: "))
 
 
 for i, j in zip([60, 72, 90, 120], p_fig):
-    figure_draw(point=j, delta=i, angle=0, a=50, color=color_input)
+    figure_draw(point=j, delta=i, angle=0, a=50, color=colors[color_input][0])
 
 
 sd.pause()
