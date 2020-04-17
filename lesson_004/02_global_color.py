@@ -47,7 +47,7 @@ for num, col in colors.items():
     print(num, "-",  col[1])
 
 
-color_input = int(input("Введите номер желаемого цвета: "))
+color_input = int(input("Введите номер желаемого цвета от 0 до 13: "))
 
 
 for i, j in zip([60, 72, 90, 120], p_fig):
