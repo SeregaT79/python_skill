@@ -2,12 +2,32 @@
 
 import simple_draw as sd
 
+sd.resolution = (800, 600)
 # 1) Написать функцию draw_branches, которая должна рисовать две ветви дерева из начальной точки
 # Функция должна принимать параметры:
 # - точка начала рисования,
 # - угол рисования,
 # - длина ветвей,
 # Отклонение ветвей от угла рисования принять 30 градусов,
+
+point_0 = sd.get_point(300, 300)
+
+def draw_branches(point=[0, 0], angle=[0, 0], length=[100, 100], delta=0):
+    if length[0] < 1:
+        return
+    v1 = sd.get_vector(start_point=point[0], angle=angle[0], length=length[0])
+    v2 = sd.get_vector(start_point=point[1], angle=angle[1], length=length[1])
+    v1.draw()
+    v2.draw()
+    next_angle = [angle[0] - delta, angle[1] + delta]
+    next_length = [length[0]*0.75, length[1]*0.75]
+    next_point =[v1.end_point, v2.end_point]
+    draw_branches(point=next_point, angle=next_angle, length=next_length, delta=delta)
+
+
+
+draw_branches(point=[point_0, point_0], angle=[90, 105], length=[50, 40], delta=25)
+
 
 # 2) Сделать draw_branches рекурсивной
 # - добавить проверку на длину ветвей, если длина меньше 10 - не рисовать
