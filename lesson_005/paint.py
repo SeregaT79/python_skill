@@ -1,5 +1,5 @@
 import simple_draw as sd
-
+import random
 sd.background_color = (255, 255, 255)
 
 # Создать пакет, в который скопировать функции отрисовки из предыдущего урока
@@ -27,6 +27,15 @@ point_s = sd.get_point(50, 400)
 p_fig = [point_t, point_k, point_p, point_s]
 
 def figure_draw(point=0, delta=0, angle=0, a=50, color=0):
+    """
+    Рисуем фигуры
+    :param point: начальная точка
+    :param delta: величина изменения угла
+    :param angle: угол
+    :param a: сторона фигуры
+    :param color: цвет
+    :return: возвращает треугольник
+    """
     while angle < 360:
         figure = sd.get_vector(start_point=point, angle=angle, length=a, width=2)
         figure.draw(color=color)
@@ -49,30 +58,38 @@ colors = {
     12: [sd.COLOR_DARK_BLUE, 'dark_blue'],
     13: [sd.COLOR_DARK_PURPLE, 'dark_purple']
 }
-for num, col in colors.items():
-    print(num, "-",  col[1])
 
 
-color_input = int(input("Введите номер желаемого цвета от 0 до 13: "))
+def col_imp(point):
+    for num, col in colors.items():
+        print(num, "-", col[1])
 
-figure_sample = {
-    1: 'треугольник',
-    2: "квадрат",
-    3: 'пятиугольник',
-    4: 'шестиугольник'
-}
-color_input = int(input("Введите номер желаемого цвета от 0 до 13: "))
-print("Какую фигуру будем рисовать?")
-figure_input = int(input('Введите число: '))
+    figure_sample = {
+        1: 'треугольник',
+        2: "квадрат",
+        3: 'пятиугольник',
+        4: 'шестиугольник'
+    }
 
-if figure_input == 1:
-    figure_draw(point=point, delta=120, angle=0, a=100, color=colors[color_input][0])
-elif figure_input == 2:
-    figure_draw(point=point, delta=90, angle=0, a=100, color=colors[color_input][0])
-elif figure_input == 3:
-    figure_draw(point=point, delta=72, angle=0, a=100, color=colors[color_input][0])
-elif figure_input == 4:
-    figure_draw(point=point, delta=60, angle=0, a=100, color=colors[color_input][0])
+    color_input = int(input("Введите номер желаемого цвета от 0 до 13: "))
+
+    print("Какую фигуру будем рисовать?")
+
+    for num, col in figure_sample.items():
+        print(num, "-", col[1])
+
+    figure_input = int(input('Введите число: '))
+
+    if figure_input == 1:
+        figure_draw(point=point, delta=120, angle=0, a=100, color=colors[color_input][0])
+    elif figure_input == 2:
+        figure_draw(point=point, delta=90, angle=0, a=100, color=colors[color_input][0])
+    elif figure_input == 3:
+        figure_draw(point=point, delta=72, angle=0, a=100, color=colors[color_input][0])
+    elif figure_input == 4:
+        figure_draw(point=point, delta=60, angle=0, a=100, color=colors[color_input][0])
+
+    return
 
 
 def draw_bunches(point, angle, length, delta):
@@ -84,6 +101,7 @@ def draw_bunches(point, angle, length, delta):
     next_angle = random.randint(delta, 180)
     next_length = length * 0.75
     draw_bunches(point=next_point, angle=next_angle, length=next_length, delta=delta)
+
 
 def snow(y, delta=random.uniform(1, 2)):
 
