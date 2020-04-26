@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from  mastermind_engine import get_num, check_num, game
+
 # Игра «Быки и коровы»
 # https://goo.gl/Go2mb9
 #
@@ -43,5 +45,27 @@
 # Это пример применения SOLID принципа (см https://goo.gl/GFMoaI) в архитектуре программ.
 # Точнее, в этом случае важен принцип единственной ответственности - https://goo.gl/rYb3hT
 
-import random
+
+
+A = get_num()
+
+game(A)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
