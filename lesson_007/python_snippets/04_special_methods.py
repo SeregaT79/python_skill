@@ -28,7 +28,7 @@ class Backpack:
 
     def inspect(self):
         """ Проверить содержимое """
-        print("В рюкзак лежит:")
+        print("В рюкзаке лежит:")
         for item in self.content:
             print('    ', item)
 
