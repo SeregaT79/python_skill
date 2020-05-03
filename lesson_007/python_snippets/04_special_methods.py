@@ -1,69 +1,69 @@
 # -*- coding: utf-8 -*-
-
-# Существуют специальные методы, их вызов "встроен" в интерперетатор -
-# он автоматически их вызывает в определенных ситуациях.
-# Каких?
-#   создание/удаление объектов
-#   вызовы встроенных функций
-#   преобразований объектов (приведения типов)
-#   выполенение операторов языка
-#   эмуляция вызова функции
-#   работа с аттрибутами объектов
-
-# Такие методы выглядят как __имя__()
-
-
-# Рассмотрим онструктор __init__()
-# автоматичекси вызывается при создании объекта-экземпляра
-class Backpack:
-    """ Рюкзак """
-
-    def __init__(self):
-        self.content = []
-
-    def add(self, item):
-        """ Положить в рюкзак """
-        self.content.append(item)
-        print("В рюкзак положили:", item)
-
-    def inspect(self):
-        """ Проверить содержимое """
-        print("В рюкзаке лежит:")
-        for item in self.content:
-            print('    ', item)
-
-
-my_backpack = Backpack()
-my_backpack.add(item='ноутбук')
-my_backpack.add(item='зарядка для ноутбука')
-my_backpack.inspect()
-
-
-# __init__ может иметь параметры
-class Backpack:
-    """ Рюкзак """
-
-    def __init__(self, gift=None):
-        self.content = []
-        if gift is not None:
-            self.content.append(gift)
-
-    def add(self, item):
-        """ Положить в рюкзак """
-        self.content.append(item)
-        print("В рюкзак положили:", item)
-
-    def inspect(self, ):
-        """ Проверить содержимое """
-        print("В рюкзак лежит:")
-        for item in self.content:
-            print('    ', item)
-
-
-my_backpack = Backpack(gift='флешка')
-my_backpack.add(item='ноутбук')
-my_backpack.add(item='зарядка для ноутбука')
-my_backpack.inspect()
+#
+# # Существуют специальные методы, их вызов "встроен" в интерперетатор -
+# # он автоматически их вызывает в определенных ситуациях.
+# # Каких?
+# #   создание/удаление объектов
+# #   вызовы встроенных функций
+# #   преобразований объектов (приведения типов)
+# #   выполенение операторов языка
+# #   эмуляция вызова функции
+# #   работа с аттрибутами объектов
+#
+# # Такие методы выглядят как __имя__()
+#
+#
+# # Рассмотрим онструктор __init__()
+# # автоматичекси вызывается при создании объекта-экземпляра
+# class Backpack:
+#     """ Рюкзак """
+#
+#     def __init__(self):
+#         self.content = []
+#
+#     def add(self, item):
+#         """ Положить в рюкзак """
+#         self.content.append(item)
+#         print("В рюкзак положили:", item)
+#
+#     def inspect(self):
+#         """ Проверить содержимое """
+#         print("В рюкзаке лежит:")
+#         for item in self.content:
+#             print('    ', item)
+#
+#
+# my_backpack = Backpack()
+# my_backpack.add(item='ноутбук')
+# my_backpack.add(item='зарядка для ноутбука')
+# my_backpack.inspect()
+#
+#
+# # __init__ может иметь параметры
+# class Backpack:
+#     """ Рюкзак """
+#
+#     def __init__(self, gift=None):
+#         self.content = []
+#         if gift is not None:
+#             self.content.append(gift)
+#
+#     def add(self, item):
+#         """ Положить в рюкзак """
+#         self.content.append(item)
+#         print("В рюкзак положили:", item)
+#
+#     def inspect(self, ):
+#         """ Проверить содержимое """
+#         print("В рюкзак лежит:")
+#         for item in self.content:
+#             print('    ', item)
+#
+#
+# my_backpack = Backpack(gift='флешка')
+# my_backpack.add(item='ноутбук')
+# my_backpack.add(item='зарядка для ноутбука')
+# my_backpack.inspect()
 
 
 # аналогичный метод
@@ -74,27 +74,27 @@ my_backpack.inspect()
 # __str__ - вызывается при преобразовании объекта к строке str(obj)
 # например print(my_backpack)
 
-class Backpack:
-    """ Рюкзак """
-
-    def __init__(self, gift=None):
-        self.content = []
-        if gift:
-            self.content.append(gift)
-
-    def add(self, item):
-        """ Положить в рюкзак """
-        self.content.append(item)
-        print("В рюкзак положили:", item)
-
-    def __str__(self):
-        return 'Backpack: ' + ', '.join(self.content)
-
-
-my_backpack = Backpack(gift='телефон')
-my_backpack.add(item='ноутбук')
-my_backpack.add(item='зарядка для ноутбука')
-print(str(my_backpack))
+# class Backpack:
+#     """ Рюкзак """
+#
+#     def __init__(self, gift=None):
+#         self.content = []
+#         if gift:
+#             self.content.append(gift)
+#
+#     def add(self, item):
+#         """ Положить в рюкзак """
+#         self.content.append(item)
+#         print("В рюкзак положили:", item)
+#
+#     def __str__(self):
+#         return 'Backpack: ' + ', '.join(self.content)
+#
+#
+# my_backpack = Backpack(gift='телефон')
+# my_backpack.add(item='ноутбук')
+# my_backpack.add(item='зарядка для ноутбука')
+# print(str(my_backpack))
 
 
 # print(my_backpack)
