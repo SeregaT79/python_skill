@@ -52,6 +52,12 @@ class Man:
         self.fullness -= 10
         cprint('{} Вьехал в дом'.format(self.name), color='cyan')
 
+    def give_a_cat(self, house, Cat):
+        self.house = house
+        self.house.cat_food = 0
+        self.cat = Cat
+        cprint('Завел кота {}'.format(self.Cat.name), color='magenta')
+
     def act(self):
         if self.fullness <= 0:
             cprint('{} умер...'.format(self.name), color='red')
@@ -76,10 +82,20 @@ class House:
     def __init__(self):
         self.food = 50
         self.money = 0
+        self.cat_food = 0
+        self.dirt = 0
 
     def __str__(self):
         return 'В доме еды осталось {}, денег осталось {}'.format(
             self.food, self.money)
+
+
+class Cat:
+
+    def __init__(self, name):
+        self.name = name
+        self.fullness_cat = 0
+        self.house = None
 
 
 citizens = [
