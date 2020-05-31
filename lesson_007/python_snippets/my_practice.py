@@ -53,7 +53,8 @@ class Man:
             self.play_DOTA()        
 
 
-vasya = Man(name='Вася')
+beavis = Man(name='Бивис')
+batthead = Man(name='Батхет')
 
 for day in range(1, 21):
     print(f'\n==================== день {day} ==========================\n')
