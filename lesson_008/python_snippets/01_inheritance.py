@@ -4,14 +4,14 @@
 # Например, домашние животные. Они все имеют 4 ноги и хвост. Но кричат по разному...
 
 
-class Pet:
-    """ Домашнее животное """
-    legs = 4
-    has_tail = True
+# class Pet:
+#     """ Домашнее животное """
+#     legs = 4
+#     has_tail = True
 
-    def inspect(self):
-        print('Всего ног:', self.legs)
-        print('Хвост присутствует -', 'да' if self.has_tail else 'нет')
+#     def inspect(self):
+#         print('Всего ног:', self.legs)
+#         print('Хвост присутствует -', 'да' if self.has_tail else 'нет')
 
 
 class Cat(Pet):
