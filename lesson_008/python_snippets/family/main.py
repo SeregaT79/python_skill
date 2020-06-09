@@ -2,27 +2,34 @@
 
 from termcolor import cprint
 from random import randint
-
-
-
-
-
-
-
-
+from peoples import *
+from home import House, Cat
 
 
 home = House()
-serge = Husband(name='Сережа')
+serega = Husband(name='Серега')
 masha = Wife(name='Маша')
+kolya = Child('Коля')
+cat = Cat('Мурзик')
+in_home = [serega, masha, cat]
+
+for man in in_home:
+    man.my_home(home)
+for i in in_home:
+    print(i)
+serega.pick_up_cat(home)
 
 for day in range(365):
+    for i in in_home[0:1]:
+        i.fullness -= 10
     cprint('================== День {} =================='.format(day), color='red')
-    serge.act()
+    serega.act()
     masha.act()
-    cprint(serge, color='cyan')
-    cprint(masha, color='cyan')
-    cprint(home, color='cyan')
+    kolya.act()
+    home.act()
+    cat.act()
+cprint(f"{masha.name} за год купила {masha.coat} шубы")
+
 
 # TODO после реализации первой части - отдать на проверку учителю
 
@@ -43,30 +50,13 @@ for day in range(365):
 #   еда для кота (в начале - 30)
 #
 # У кота есть имя и степень сытости (в начале - 30)
-# Любое действие кота, кроме "есть", приводит к уменьшению степени сытости на 10 пунктов
+# Любое действие кота, кроме "есть", приводит к уменьшению 
+# степени сытости на 10 пунктов
 # Еда для кота покупается за деньги: за 10 денег 10 еды.
 # Кушает кот максимум по 10 единиц еды, степень сытости растет на 2 пункта за 1 пункт еды.
 # Степень сытости не должна падать ниже 0, иначе кот умрет от голода.
 #
 # Если кот дерет обои, то грязи становится больше на 5 пунктов
-
-
-class Cat:
-
-    def __init__(self):
-        pass
-
-    def act(self):
-        pass
-
-    def eat(self):
-        pass
-
-    def sleep(self):
-        pass
-
-    def soil(self):
-        pass
 
 
 ######################################################## Часть вторая бис
@@ -80,23 +70,6 @@ class Cat:
 # отличия от взрослых - кушает максимум 10 единиц еды,
 # степень счастья  - не меняется, всегда ==100 ;)
 
-class Child:
-
-    def __init__(self):
-        pass
-
-    def __str__(self):
-        return super().__str__()
-
-    def act(self):
-        pass
-
-    def eat(self):
-        pass
-
-    def sleep(self):
-        pass
-
 
 # TODO после реализации второй части - отдать на проверку учителем две ветки
 
@@ -108,22 +81,22 @@ class Child:
 # отправить на проверку учителем.
 
 
-home = House()
-serge = Husband(name='Сережа')
-masha = Wife(name='Маша')
-kolya = Child(name='Коля')
-murzik = Cat(name='Мурзик')
+# home = House()
+# serge = Husband(name='Сережа')
+# masha = Wife(name='Маша')
+# kolya = Child(name='Коля')
+# murzik = Cat(name='Мурзик')
 
-for day in range(365):
-    cprint('================== День {} =================='.format(day), color='red')
-    serge.act()
-    masha.act()
-    kolya.act()
-    murzik.act()
-    cprint(serge, color='cyan')
-    cprint(masha, color='cyan')
-    cprint(kolya, color='cyan')
-    cprint(murzik, color='cyan')
+# for day in range(365):
+#     cprint('================== День {} =================='.format(day), color='red')
+#     serge.act()
+#     masha.act()
+#     kolya.act()
+#     murzik.act()
+#     cprint(serge, color='cyan')
+#     cprint(masha, color='cyan')
+#     cprint(kolya, color='cyan')
+#     cprint(murzik, color='cyan')
 
 
 # Усложненное задание (делать по желанию)

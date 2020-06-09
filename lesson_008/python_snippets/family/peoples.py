@@ -1,8 +1,8 @@
 from home import House
 from termcolor import cprint
+from random import randint
 
 
-#
 # Любое действие, кроме "есть", приводит к уменьшению степени сытости на 10 пунктов
 # Кушают взрослые максимум по 30 единиц еды, степень сытости растет на 1 пункт за 1 пункт еды.
 # Степень сытости не должна падать ниже 0, иначе чел умрет от голода.
@@ -25,11 +25,6 @@ class Man:
         self.happiness += 3
         cprint(f"{self.name} покушал, сытость {self.fullness}, счастья {self.happiness}", color='green')
 
-    def sleeping(self):
-        self.fullness -= 10
-        self.happiness += 3
-        cprint(f"{self.name} отдохнул, счастья {self.happiness}", color='green')
-
     def my_home(self, house):
         self.house = house
         cprint(f'{self.name} живет в красивом доме', color='yellow')
@@ -50,21 +45,39 @@ class Husband(Man):
     def work(self):
         #   ходить на работу,
         # Деньги в тумбочку добавляет муж, после работы - 150 единиц за раз.
-        self.house.money += 150
-        return f'{self.name} сходил на работу'
+        self.house.money += 350
+        cprint(f'{self.name} сходил на работу', color='blue')
 
     def gaming(self):
         #   играть в WoT,
         # Степень счастья растет: у мужа от игры в WoT (на 20),
         self.happiness += 20
         self.fullness -= 5
-        return f'{self.name} поиграл в WoT'
+        cprint(f'{self.name} поиграл в WoT', color='cyan')
+
+    def pick_up_cat(self, house):
+        cprint(f'{self.name} подобрал кота', color='yellow')
+        self.house = house
+        self.house.cat_food += 20
 
     def act(self):
+        if self.house.money < 250:
+            self.work()
+
+        if self.fullness < 15:
+            self.eat()
+
         # Если в доме грязи больше 90 - у людей падает степень счастья каждый день на 10 пунктов,
         if self.fullness <= 0:
             cprint(f'{self.name} умер', color='red')
 
+        dice = randint(1, 3)
+        if dice != 1:
+            self.gaming()
+
+        if self.house.dirt > 90:
+            self.happiness -= 10
+            cprint(f'Что-то очень много грязи! Не пора ли убираться?', color='grey')
 
 
 class Wife(Man):
@@ -79,19 +92,25 @@ class Wife(Man):
 
     def shopping(self):
         #   покупать продукты,
-        # Еда стоит 10 денег 10 единиц еды. 
-        self.house.money -= 100
-        self.house.food += 100
-        self.fullness -= 5
-        return f'{self.name} купила продуктов'
+        # Еда стоит 10 денег 10 единиц еды.
+        if self.house.cat_food < 10:
+            self.house.cat_food += 20
+            self.house.money -= 100
+            self.house.food += 100
+            self.fullness -= 5
+            cprint(f'{self.name} купила продуктов и коту еды', color='white')
+        else:
+            self.house.money -= 100
+            self.house.food += 100
+            self.fullness -= 5
+            cprint(f'{self.name} купила продуктов', color='white')
 
     def buy_fur_coat(self):
         # у жены степень счастья растет от покупки шубы (на 60, но шуба дорогая)
         #   покупать шубу, Шуба стоит 350 единиц.
         self.happiness += 60
-        self.house.money -= 350
-        coat += 1
-        return f'{self.name} купила шубу'
+        self.house.money -= 150
+        cprint(f'{self.name} купила шубу', color='cyan')
 
     def clean_house(self):
         #   убираться в доме,
@@ -99,38 +118,58 @@ class Wife(Man):
         self.house.dirt -= 100
         self.happiness += 2
         self.fullness -= 5
-        return f'{self.name} убралась в доме'
+        cprint(f'{self.name} убралась в доме', color='yellow')
+
+    def go_beauty_saloon(self):
+        self.house.money -= 60
+        self.happiness += 15
+        self.fullness -= 15
+        cprint(f'{self.name} сходила в салон красоты', color='magenta')
 
     def act(self):
+
+        if self.fullness < 15:
+            self.eat()
         # Если в доме грязи больше 90 - у людей падает степень счастья каждый день на 10 пунктов,
 
         if self.fullness <= 0:
             cprint(f'{self.name} умерла', color='red')
 
-        if self.house.dirt > 150:
+        if self.house.dirt > 100:
             self.clean_house()
 
-        if 0 < self.house.food < 60:
+        if self.house.food < 60:
             self.shopping()
 
-        if self.house.money > 400:
+        if self.house.cat_food < 12:
+            self.shopping()
+
+        dice = randint(1, 6)
+        if dice == 2:
+            self.go_beauty_saloon()
+        elif dice == 5 and self.house.money > 550:
             self.buy_fur_coat()
+            self.coat += 1
+
+        if self.house.dirt > 90:
+            self.happiness -= 10
+            cprint(f'Что-то очень много грязи! Не пора ли убираться?')
 
 
-husband = Husband(name='Серега')
-wife = Wife(name="Аня")
-home = House()
-in_home = [husband, wife]
+class Child(Man):
 
-if __name__ == '__main__':
-    day = 1
+    def __init__(self, name):
+        super().__init__(name=name)
 
-    for man in in_home:
-        man.my_home(home)
+    def __str__(self):
+        res = super().__str__()
+        cprint(res + f"{self.name} теперь с нами", color='magenta')
 
-    while day < 15:
-        print('*' * 10, f'{day}', '*' * 10)
-        husband.act()
-        wife.act()
-        home.act()
-        day += 1
+    def act(self):
+        self.eat()
+
+    def eat(self):
+        self.house.food -= 10
+
+    def sleep(self):
+        pass
