@@ -21,7 +21,31 @@
 # Упорядочивание по частоте - по убыванию. Ширину таблицы подберите по своему вкусу
 # Требования к коду: он должен быть готовым к расширению функциональности. Делать сразу на классах.
 
-# TODO здесь ваш код
+from collections import Counter
+from pprint import pprint
+
+file = '/home/zerg/Документы/PythonSkillbox/hw/voyna-i-mir.txt'
+
+with open(file, encoding='cp1251') as f:
+    counter = Counter()
+    for line in f.readlines():
+        for w in line:
+            if w.isalpha():
+                counter[w] += 1
+            else:
+                continue
+    dict_common = counter.most_common()
+
+print('+--------------+-------------+')
+print('|  {:^10}  |  {:^10} |'.format('буква', 'частота'))
+print('+--------------+-------------+')
+for i in dict_common:
+    print('|  {:^10}  |  {:^10} |'.format(i[0], i[1]))
+    
+print('+--------------+-------------+')
+print('|  {:^10}  |  {:^10} |'.format('Итого', sum(counter.values())))
+print('+--------------+-------------+')
+
 
 # После выполнения первого этапа нужно сделать упорядочивание статистики
 #  - по частоте по возрастанию
