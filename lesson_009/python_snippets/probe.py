@@ -9,15 +9,13 @@ with open(file, 'r', encoding='utf-8') as f:
     for line in f.readlines():
         big_list.append(line.strip().replace('[', '').split(']'))
 
-def splitMy(s):
-    for i in s:
-        i.replace(i, i[:-10])
-    return s
 
 df = pd.DataFrame(big_list)
-# df[0] = splitMy(df[0])
 
-# print(df.head(3))
-for i in df[0]:
-    df[0].i = df[0].i[:-10]
-print(df[0])
+for line in df[0]:
+    df[0].replace(line, line[:-10], inplace=True)
+
+print(pd.pivot_table(df, values=1, index=0, aggfunc='sum'))
+
+
+
